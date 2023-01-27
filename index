@@ -1,0 +1,2 @@
+export REACT_NATIVE_COMMUNITY_VERSION=5.4;
+for f in */*; do source "$f"; done

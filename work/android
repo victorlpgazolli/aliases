@@ -1,0 +1,29 @@
+adb_reverse(){
+        docker run -it \
+                -v $PWD:/app \
+                -w /app \
+                --net=host \
+                --privileged \
+                reactnativecommunity/react-native-android:$REACT_NATIVE_COMMUNITY_VERSION \
+                /bin/bash -c "adb reverse tcp:8081 tcp:8081"
+}
+
+adb_install(){
+        docker run -it \
+                -v $PWD:/app \
+                -w /app \
+                --net=host \
+                --privileged \
+                reactnativecommunity/react-native-android:$REACT_NATIVE_COMMUNITY_VERSION \
+                /bin/bash -c "adb install $@"
+}
+
+adb_uninstall(){
+        docker run -it \
+                -v $PWD:/app \
+                -w /app \
+                --net=host \
+                --privileged \
+                reactnativecommunity/react-native-android:$REACT_NATIVE_COMMUNITY_VERSION \
+                /bin/bash -c "adb uninstall $@"
+}

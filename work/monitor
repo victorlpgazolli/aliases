@@ -1,0 +1,3 @@
+
+
+alias work_monitor="xrandr --output eDP1 --primary --mode 1366x768 --rate 60.00 --output HDMI1 --mode 2560x1080 --rate 60.00 --above eDP1"

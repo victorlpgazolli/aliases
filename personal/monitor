@@ -1,0 +1,8 @@
+alias my_tv="xrandr --output HDMI1 --mode 1280x768"
+
+my_monitor(){
+    xrandr --output eDP1 --auto --right-of HDMI1
+    xrandr --output HDMI1 --mode 1920x1080
+    xrandr --output eDP1 --off
+    feh --bg-fill -s "$BACKGROUND_FILEPATH"
+}

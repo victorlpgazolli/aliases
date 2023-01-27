@@ -1,0 +1,13 @@
+
+compressMp4(){
+  ffmpeg -i $1 -vcodec libx265 -crf 20 $2
+}
+
+
+qrcode(){
+  folder_path=$(mktemp -d);
+  file_path=$folder_path/o.png;
+  payload=$1;
+  qrencode -o $file_path $payload;
+  thunar $file_path;
+}

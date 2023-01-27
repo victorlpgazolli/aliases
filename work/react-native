@@ -1,0 +1,18 @@
+rns(){
+	docker run -it \
+		-v $PWD:/app \
+		-w /app \
+		--net=host \
+		reactnativecommunity/react-native-android:$REACT_NATIVE_COMMUNITY_VERSION \
+		/bin/bash -c "npx react-native start $@"
+}
+
+rnand(){
+        docker run -it \
+                -v $PWD:/app \
+                -w /app \
+                --net=host \
+                reactnativecommunity/react-native-android:$REACT_NATIVE_COMMUNITY_VERSION \
+                /bin/bash -c "npx react-native run-android $@"
+}
+
