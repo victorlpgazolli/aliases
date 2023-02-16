@@ -1,29 +1,39 @@
+
+
+adb_devices(){
+        currentProject=$(pwd|rev|cut -d'/' -f1|rev)
+        docker exec -i "$currentProject" /bin/sh -c "adb devices"
+}
+
+
 adb_reverse(){
-        docker run -it \
-                -v $PWD:/app \
-                -w /app \
-                --net=host \
-                --privileged \
-                reactnativecommunity/react-native-android:$REACT_NATIVE_COMMUNITY_VERSION \
-                /bin/bash -c "adb reverse tcp:8081 tcp:8081"
+        currentProject=$(pwd|rev|cut -d'/' -f1|rev)
+        docker exec -i "$currentProject" /bin/sh -c "adb reverse tcp:8081 tcp:8081"
 }
 
 adb_install(){
-        docker run -it \
-                -v $PWD:/app \
-                -w /app \
-                --net=host \
-                --privileged \
-                reactnativecommunity/react-native-android:$REACT_NATIVE_COMMUNITY_VERSION \
-                /bin/bash -c "adb install $@"
+        currentProject=$(pwd|rev|cut -d'/' -f1|rev)
+
+        docker exec -i "$currentProject" /bin/sh -c "adb install $@"
 }
 
 adb_uninstall(){
-        docker run -it \
-                -v $PWD:/app \
-                -w /app \
-                --net=host \
-                --privileged \
-                reactnativecommunity/react-native-android:$REACT_NATIVE_COMMUNITY_VERSION \
-                /bin/bash -c "adb uninstall $@"
+        currentProject=$(pwd|rev|cut -d'/' -f1|rev)
+
+        docker exec -i "$currentProject" /bin/sh -c "adb uninstall $@"
+}
+adb_shell(){
+        currentProject=$(pwd|rev|cut -d'/' -f1|rev)
+
+        docker exec -i "$currentProject" /bin/sh -c "adb shell $@"
+}
+adb_start_app(){
+        currentProject=$(pwd|rev|cut -d'/' -f1|rev)
+
+        docker exec -i "$currentProject" /bin/sh -c "adb shell monkey -p $1 -c android.intent.category.LAUNCHER 1 "
+}
+adb_kill_app(){
+        currentProject=$(pwd|rev|cut -d'/' -f1|rev)
+
+        docker exec -i "$currentProject" /bin/sh -c "adb shell am force-stop $1"
 }

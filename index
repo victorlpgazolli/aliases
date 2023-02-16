@@ -1,2 +1,23 @@
 export REACT_NATIVE_COMMUNITY_VERSION=5.4;
+startDockerAndroid() {
+        currentProject=$(pwd|rev|cut -d'/' -f1|rev)
+        isRunning=$(docker ps -qa  --filter "name=$currentProject")
+        echo $isRunning 
+        if [ -z $isRunning ]; then
+            docker run -td \
+                        -v $PWD:/app \
+                        -w /app \
+                        --name "$currentProject" \
+                        --net=host \
+                        --privileged \
+                        reactnativecommunity/react-native-android:$REACT_NATIVE_COMMUNITY_VERSION   
+        fi
+}
+stopDockerAndroid() {
+        currentProject=$(pwd|rev|cut -d'/' -f1|rev)
+        docker stop $(docker ps -qa  --filter "name=$currentProject") && \
+        docker rm $(docker ps -qa  --filter "name=$currentProject")
+
+}
+
 for f in */*; do source "$f"; done
