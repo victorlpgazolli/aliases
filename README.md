@@ -3,6 +3,9 @@
 
 `./personal` -> alias used for daily personal linux usage
 
+requirements:
+- [docker](https://docker.com/)
+
 configuration:
 ```bash
 
