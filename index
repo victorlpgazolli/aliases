@@ -1,4 +1,8 @@
 export REACT_NATIVE_COMMUNITY_VERSION=5.4;
+cliDockerAndroid() {
+        currentProject=$(pwd|rev|cut -d'/' -f1|rev)
+        docker exec -it $(docker ps -qa  --filter "name=$currentProject") /bin/bash
+}
 startDockerAndroid() {
         currentProject=$(pwd|rev|cut -d'/' -f1|rev)
         isRunning=$(docker ps -qa  --filter "name=$currentProject")

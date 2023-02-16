@@ -2,38 +2,38 @@
 
 adb_devices(){
         currentProject=$(pwd|rev|cut -d'/' -f1|rev)
-        docker exec -i "$currentProject" /bin/sh -c "adb devices"
+        docker exec -it "$currentProject" /bin/bash -c "adb devices"
 }
 
 
 adb_reverse(){
         currentProject=$(pwd|rev|cut -d'/' -f1|rev)
-        docker exec -i "$currentProject" /bin/sh -c "adb reverse tcp:8081 tcp:8081"
+        docker exec -it "$currentProject" /bin/bash -c "adb reverse tcp:8081 tcp:8081"
 }
 
 adb_install(){
         currentProject=$(pwd|rev|cut -d'/' -f1|rev)
 
-        docker exec -i "$currentProject" /bin/sh -c "adb install $@"
+        docker exec -it "$currentProject" /bin/bash -c "adb install $@"
 }
 
 adb_uninstall(){
         currentProject=$(pwd|rev|cut -d'/' -f1|rev)
 
-        docker exec -i "$currentProject" /bin/sh -c "adb uninstall $@"
+        docker exec -it "$currentProject" /bin/bash -c "adb uninstall $@"
 }
 adb_shell(){
         currentProject=$(pwd|rev|cut -d'/' -f1|rev)
 
-        docker exec -i "$currentProject" /bin/sh -c "adb shell $@"
+        docker exec -it "$currentProject" /bin/bash -c "adb shell $@"
 }
 adb_start_app(){
         currentProject=$(pwd|rev|cut -d'/' -f1|rev)
 
-        docker exec -i "$currentProject" /bin/sh -c "adb shell monkey -p $1 -c android.intent.category.LAUNCHER 1 "
+        docker exec -it "$currentProject" /bin/bash -c "adb shell monkey -p $1 -c android.intent.category.LAUNCHER 1 "
 }
 adb_kill_app(){
         currentProject=$(pwd|rev|cut -d'/' -f1|rev)
 
-        docker exec -i "$currentProject" /bin/sh -c "adb shell am force-stop $1"
+        docker exec -it "$currentProject" /bin/bash -c "adb shell am force-stop $1"
 }

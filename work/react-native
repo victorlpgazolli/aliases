@@ -1,14 +1,13 @@
 rns(){
         currentProject=$(pwd|rev|cut -d'/' -f1|rev)
 
-        docker exec -i "$currentProject" /bin/sh -c "npx react-native start $@"
-
+        docker exec -it "$currentProject" /bin/bash -c "npx react-native start $@"
 }
 
 rnand(){
         currentProject=$(pwd|rev|cut -d'/' -f1|rev)
 
-        docker exec -i "$currentProject" /bin/sh -c "npx react-native run-android  $@"
+        docker exec -it "$currentProject" /bin/bash -c "npx react-native run-android $@"
 
 }
 
