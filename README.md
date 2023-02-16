@@ -1,7 +1,6 @@
 # aliases
-
-
 `./work` -> alias used for react-native/android development
+
 `./personal` -> alias used for daily personal linux usage
 
 configuration:
